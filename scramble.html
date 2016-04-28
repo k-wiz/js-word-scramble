@@ -20,23 +20,29 @@
         while (playing) {
 
             // Grab a random word from the WORDS array
-            var random_index = getRandomInt(0, WORDS.length);
+            var randomIndex = getRandomInt(0, WORDS.length);
 
-            var random_word = WORDS[random_index];
+            var randomWord = WORDS[randomIndex];
             
             // Grab the corresponding scrambled word from the SCRAMBLED array
-            var scrambled_word = SCRAMBLED[random_index];
+            var scrambled_word = SCRAMBLED[randomIndex];
 
             // prompt the user to guess the original word when given the scrambled word
             var result = prompt("Unscramble this word: " + scrambled_word);
 
             // If the user guesses wrong, tell them they were wrong and the right word.
             // If the user guesses the correct word, congratulate them.
-            if (result.toLowerCase() === random_word) {
+            if (result.toLowerCase().trim() === randomWord) {
                 alert("You guessed right! You're awesome!");
             }
             else {
-                alert("Womp womp. You're wrong. The correct word is " + random_word + ".");
+                var guessAgain = confirm("Womp womp. You're wrong. Press OK to guess again or Cancel to quit.");
+                if (guessAgain === true) {
+                    result = prompt("Unscramble this word: " + scrambled_word);
+                }
+                // else {
+                //     alert("You guessed right! You're awesome!");
+                // }
             }
 
             playing = confirm("Press OK To keep playing or Cancel to quit");
